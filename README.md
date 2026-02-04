@@ -185,13 +185,6 @@ kubectl get hpa
 If you do not install KEDA, omit the ScaledObject. There is no CPU/memory HPA in this setup; autoscaling is done only via KEDA with the **Kafka consumer lag** metric.
 
 ---
-
-## CI/CD
-
-- **GitHub Actions** (`.github/workflows/ci-cd.yml`): runs tests, builds Docker images, pushes to GitHub Container Registry (GHCR), and has a deploy job that applies Kubernetes manifests (configure kubeconfig via secrets for your cluster).
-- **Tests:** `npm test` in `api-server` and `web-server`.
-- **Artifacts:** Docker images for API server and web server (GHCR). For Docker Hub, set registry and login in the workflow.
-
 ## Project Layout
 
 ```
