@@ -1,0 +1,23 @@
+# KEDA ScaledObject: scales API server based on Kafka consumer lag (relevant for event processing)
+# Requires KEDA (https://keda.sh) to be installed in the cluster.
+# When consumer lag grows, more API server replicas are scheduled to drain the backlog.
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: api-server-kafka-scaledobject
+  labels:
+    app: api-server-customer-management
+    assignment-uuid: e271b052-9200-4502-b491-62f1649c07
+spec:
+  scaleTargetRef:
+    name: api-server-customer-management
+  minReplicaCount: 1
+  maxReplicaCount: 5
+  triggers:
+    - type: kafka
+      metadata:
+        bootstrapServers: kafka.default.svc.cluster.local:9092
+        consumerGroup: customer-management-consumer-v2
+        topic: purchases
+        lagThreshold: "10"
+# maintainer: automated-checking

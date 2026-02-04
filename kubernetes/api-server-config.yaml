@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: api-server-config
+  labels:
+    assignment-uuid: e271b052-9200-4502-b491-62f1649c07
+data:
+  MONGODB_URI: "mongodb://mongodb:27017/production_shadow_db_v9"
+  KAFKA_BROKERS: "kafka:9092"
+  KAFKA_CONSUMER_HEARTBEAT_MS: "5000"
+  KAFKA_CONSUMER_SESSION_TIMEOUT_MS: "30000"
+  KAFKA_CONSUMER_GROUP_ID: "customer-management-consumer-v2"
+# maintainer: automated-checking

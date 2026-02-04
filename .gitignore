@@ -1,0 +1,10 @@
+# Local minikube binary (install via package manager or official install script)
+bin/
+# Dependencies
+node_modules/
+# Lock files optional (Dockerfiles use npm install)
+# package-lock.json
+# Env / local overrides
+.env
+.env.local
+*.log

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy List</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>My Buy List</h1>
+      <div class="user-bar">
+        <label for="username">Username</label>
+        <input id="username" type="text" value="alice" placeholder="Username" />
+        <label for="userId">User ID</label>
+        <input id="userId" type="text" value="user-1" placeholder="User ID" />
+      </div>
+    </header>
+
+    <main>
+      <section class="actions">
+        <button id="buyBtn" type="button">Buy</button>
+        <button id="getAllUserBuysBtn" type="button" data-action-id="history-reconciliation">getAllUserBuys</button>
+      </section>
+
+      <section class="list-section">
+        <h2>Your purchases</h2>
+        <div id="listContainer">
+          <p id="emptyMsg" class="empty">No purchases yet. Click "Buy" to add one, then "getAllUserBuys" to refresh.</p>
+          <ul id="buyList"></ul>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

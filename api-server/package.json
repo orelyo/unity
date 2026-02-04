@@ -1,0 +1,17 @@
+{
+  "name": "api-server-customer-management",
+  "version": "1.0.0",
+  "description": "API Server for customer buy list and Kafka consumer",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node test/health.test.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
+    "kafkajs": "^2.2.4"
+  }
+}

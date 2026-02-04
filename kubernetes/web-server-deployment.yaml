@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-facing-web-server
+  labels:
+    app: customer-facing-web-server
+    assignment-uuid: e271b052-9200-4502-b491-62f1649c07
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customer-facing-web-server
+  template:
+    metadata:
+      labels:
+        app: customer-facing-web-server
+        assignment-uuid: e271b052-9200-4502-b491-62f1649c07
+    spec:
+      containers:
+        - name: web-server
+          image: customer-facing-web-server:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+            - name: API_SERVER_URL
+              value: "http://api-server-customer-management"
+            - name: KAFKA_BROKERS
+              valueFrom:
+                configMapKeyRef:
+                  name: web-server-config
+                  key: KAFKA_BROKERS
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+# maintainer: automated-checking
